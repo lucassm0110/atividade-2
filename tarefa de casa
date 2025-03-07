@@ -1,0 +1,38 @@
+const dados = [];
+
+for (let i = 0; i < 15; i++) {
+    let altura = parseFloat(prompt(`Digite a altura da pessoa ${i + 1} (em metros):`));
+    let genero = prompt(`Digite o gênero da pessoa ${i + 1} (M para Masculino, F para Feminino):`).toUpperCase();
+    dados.push({ altura, genero });
+}
+
+let maiorAltura = dados[0].altura;
+let menorAltura = dados[0].altura;
+let somaAlturaHomens = 0;
+let qtdHomens = 0;
+let qtdMulheres = 0;
+
+for (let i = 0; i < dados.length; i++) {
+    let altura = dados[i].altura;
+    let genero = dados[i].genero;
+    
+    if (altura > maiorAltura) {
+        maiorAltura = altura;
+    }
+    if (altura < menorAltura) {
+        menorAltura = altura;
+    }
+    if (genero === 'M') {
+        somaAlturaHomens += altura;
+        qtdHomens++;
+    } else if (genero === 'F') {
+        qtdMulheres++;
+    }
+}
+
+let mediaAlturaHomens = qtdHomens > 0 ? somaAlturaHomens / qtdHomens : 0;
+
+console.log("Maior altura: " + maiorAltura.toFixed(2) + "m");
+console.log("Menor altura: " + menorAltura.toFixed(2) + "m");
+console.log("Média de altura dos homens: " + mediaAlturaHomens.toFixed(2) + "m");
+console.log("Número de mulheres: " + qtdMulheres);
